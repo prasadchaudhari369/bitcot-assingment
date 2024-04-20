@@ -30,5 +30,13 @@ pipeline {
                 }
             }
         }
+
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    docker.image("${imageName}:v${BUILD_NUMBER}").run("-p 80:80")
+                }
+            }
+        }
     }
 }
